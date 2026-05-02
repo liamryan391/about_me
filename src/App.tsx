@@ -74,7 +74,7 @@ function App() {
           </div>
 
           <div className="hero-visual" aria-label="Cybersecurity portfolio visual">
-            <img src="/security-portfolio-visual.png" alt="" />
+            <img src="/security-portfolio-visual.svg" alt="" />
             <div className="visual-caption">
               <ShieldCheck aria-hidden="true" />
               <span>Security, clarity, and professional growth</span>
