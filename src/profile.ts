@@ -1,16 +1,32 @@
 import {
+  Activity,
   BadgeCheck,
+  BookOpenCheck,
   BriefcaseBusiness,
   ClipboardCheck,
-  ExternalLink,
+  Code2,
+  Database,
+  FileText,
+  Github,
   GraduationCap,
   Handshake,
+  Linkedin,
   LockKeyhole,
+  Mail,
+  Network,
   SearchCheck,
+  ShieldAlert,
   ShieldCheck,
-  UserRoundCheck,
+  Terminal,
+  Trophy,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+
+export type LinkItem = {
+  label: string;
+  href: string;
+  icon: LucideIcon;
+};
 
 export type EvidenceItem = {
   title: string;
@@ -18,158 +34,323 @@ export type EvidenceItem = {
   icon: LucideIcon;
 };
 
-export type TimelineItem = {
+export type MetricItem = {
+  value: string;
+  label: string;
+  detail: string;
+};
+
+export type ExperienceItem = {
   period: string;
   title: string;
   place: string;
   summary: string;
+  achievements: string[];
+};
+
+export type SkillGroup = {
+  title: string;
+  icon: LucideIcon;
+  skills: string[];
 };
 
 export type ProjectItem = {
   title: string;
+  context: string;
   outcome: string;
   skills: string[];
 };
 
+export type EducationItem = {
+  award: string;
+  result: string;
+  period: string;
+  focus: string;
+};
+
 export const profile = {
   name: "Liam Ryan",
-  headline: "Cybersecurity-focused candidate with a clear, employer-ready story.",
+  role: "Cyber Security MSc Graduate and System Interface Analyst",
+  headline:
+    "SOC-focused analyst who turns messy data, alerts, and stakeholder pressure into clear evidence and controlled action.",
   intro:
-    "I bring a practical security mindset, university learning, and workplace experience together in a way that helps teams reduce risk, communicate clearly, and keep improving.",
-  location: "United Kingdom",
-  audience:
-    "Built for recruiters, hiring managers, and security teams who want a quick, plain-English view of potential, strengths, and working style.",
+    "I currently support secure, high-volume Civil Service Pensions interface services for 270+ employers. My background blends client-facing investigation, SQL-led validation, root cause analysis, and hands-on security labs across Splunk, Suricata, Nmap, Burp Suite, and Linux.",
+  location: "Liverpool, UK",
+  target: "SOC Analyst, Cyber Security Analyst, or security operations support roles",
+  availability:
+    "Open to SOC Analyst, Cyber Security Analyst, and security operations roles.",
   links: [
+    {
+      label: "Email",
+      href: "mailto:liam.ry99@gmail.com",
+      icon: Mail,
+    },
+    {
+      label: "LinkedIn",
+      href: "https://linkedin.com/in/liam-ryan-b61641189",
+      icon: Linkedin,
+    },
     {
       label: "GitHub",
       href: "https://github.com/liamryan391",
-      icon: ExternalLink,
+      icon: Github,
     },
-  ],
+  ] satisfies LinkItem[],
 };
 
-export const employerSignals: EvidenceItem[] = [
+export const metrics: MetricItem[] = [
   {
-    title: "Security minded",
-    detail:
-      "Looks for weak points, follows evidence, and explains risks in language people can act on.",
-    icon: ShieldCheck,
+    value: "270+",
+    label: "employers supported",
+    detail: "Civil Service Pensions interface work with strict service expectations.",
   },
   {
-    title: "University grounded",
-    detail:
-      "Connects academic learning with practical examples, structured research, and clear written work.",
-    icon: GraduationCap,
+    value: "1.0% -> 0.4%",
+    label: "recurring errors reduced",
+    detail: "Month-on-month improvement through validation and trend analysis.",
   },
   {
-    title: "Workplace ready",
-    detail:
-      "Values reliability, communication, punctuality, and calm problem solving under pressure.",
-    icon: BriefcaseBusiness,
+    value: "MSc",
+    label: "Cyber Security, Merit",
+    detail: "Liverpool John Moores University, 69%, with network and web security focus.",
   },
   {
-    title: "People aware",
-    detail:
-      "Understands that strong cybersecurity depends on people, process, and trust as much as tools.",
-    icon: Handshake,
+    value: "SOC",
+    label: "lab development",
+    detail: "Splunk triage, Suricata rules, RDP event review, and vulnerability tooling.",
   },
 ];
 
-export const strengths: EvidenceItem[] = [
+export const employerSignals: EvidenceItem[] = [
   {
-    title: "Risk spotting",
+    title: "Evidence-led investigator",
     detail:
-      "Able to notice patterns, ask useful questions, and separate urgent issues from background noise.",
+      "Uses SQL, logs, validation checks, and timeline thinking to move from symptom to root cause.",
     icon: SearchCheck,
   },
   {
-    title: "Clear reporting",
+    title: "Security-aware operator",
     detail:
-      "Turns technical findings into concise summaries, next steps, and business impact.",
-    icon: ClipboardCheck,
+      "Understands data integrity, secure handling, operational risk, and the need for reliable controls.",
+    icon: ShieldCheck,
   },
   {
-    title: "Secure habits",
+    title: "Client-facing communicator",
     detail:
-      "Builds with careful access control, sensible passwords, privacy awareness, and documentation.",
-    icon: LockKeyhole,
+      "Explains technical issues clearly to employers, payroll providers, internal teams, and mixed audiences.",
+    icon: Handshake,
   },
   {
-    title: "Professional growth",
+    title: "Improvement builder",
     detail:
-      "Actively learning, open to feedback, and motivated by roles where improvement is visible.",
+      "Builds practical tooling and repeatable checks that reduce manual work and stop repeat failures.",
     icon: BadgeCheck,
   },
 ];
 
-export const timeline: TimelineItem[] = [
+export const experience: ExperienceItem[] = [
   {
-    period: "University",
-    title: "Cybersecurity and computing foundation",
-    place: "Academic study",
+    period: "Dec 2025 - Present",
+    title: "System Interface Analyst",
+    place: "Capita, Civil Service Pensions",
     summary:
-      "Coursework and projects have built a base in security thinking, systems, networks, research, and communicating findings clearly.",
+      "Client-facing analyst supporting secure, high-volume pension data interface processes across a large employer base.",
+    achievements: [
+      "Maintain operational service delivery for 270+ employers under SLA and time pressure.",
+      "Built Clarity, a Microsoft Access application that combines multiple data sources for migration and BAU oversight.",
+      "Reduced recurring interface error cases from 1.0% to 0.4% through targeted validation and control improvements.",
+      "Coordinate root cause analysis and remediation with employers, payroll providers, and internal teams.",
+    ],
   },
   {
-    period: "Work Experience",
-    title: "Customer-facing and operational discipline",
-    place: "Professional environments",
+    period: "Oct 2023 - Dec 2025",
+    title: "System Interface Analyst",
+    place: "MyCSP Ltd, Civil Service Pensions",
     summary:
-      "Work experience has strengthened reliability, teamwork, accountability, and the ability to stay composed when priorities change.",
+      "Troubleshot payroll, submission, and system faults while protecting data quality before loads reached the administration platform.",
+    achievements: [
+      "Designed recovery plans for overdue submissions and validated outputs in SQL.",
+      "Used SQL to reconcile large datasets, surface exceptions, and reduce operational risk.",
+      "Created validation scripts to flag M1 system errors and duplicate employee record issues earlier.",
+      "Translated technical findings into clear actions and governance-ready documentation.",
+    ],
+  },
+];
+
+export const skillGroups: SkillGroup[] = [
+  {
+    title: "Security monitoring and detection",
+    icon: Activity,
+    skills: [
+      "Splunk search refinement",
+      "timeline analysis",
+      "event triage",
+      "RDP-related investigation",
+      "Suricata signatures",
+      "alert review",
+    ],
   },
   {
-    period: "Now",
-    title: "Building a cybersecurity career",
-    place: "Graduate and entry-level opportunities",
-    summary:
-      "Focused on roles where security awareness, investigation, documentation, and a willingness to learn can make a real contribution.",
+    title: "Security testing and investigation",
+    icon: ShieldAlert,
+    skills: [
+      "Nmap",
+      "Burp Suite",
+      "Greenbone",
+      "Metasploit",
+      "Hydra",
+      "Searchsploit",
+      "CVE validation",
+    ],
+  },
+  {
+    title: "Data, automation, and validation",
+    icon: Database,
+    skills: [
+      "SQL reconciliation",
+      "exception analysis",
+      "trend analysis",
+      "Python scripting",
+      "Microsoft Access apps",
+      "API data exchange",
+    ],
+  },
+  {
+    title: "Platforms and engineering habits",
+    icon: Terminal,
+    skills: [
+      "Windows",
+      "Linux",
+      "GitHub",
+      "GitLab",
+      "Docker basics",
+      "VS Code",
+      "JUnit",
+    ],
+  },
+];
+
+export const education: EducationItem[] = [
+  {
+    award: "MSc Cyber Security",
+    result: "Merit, 69%",
+    period: "2022 - 2023",
+    focus:
+      "Network scanning, SIEM and IDS concepts, secure web testing, threat analysis, vulnerability reporting, and secure development.",
+  },
+  {
+    award: "BSc (Hons) Computer Science",
+    result: "2:1",
+    period: "2019 - 2022",
+    focus:
+      "Software engineering fundamentals, systems thinking, programming, databases, testing, and project delivery.",
   },
 ];
 
 export const projects: ProjectItem[] = [
   {
-    title: "Security case study",
+    title: "Secure Network Scanner and Encrypted Reporting",
+    context: "MSc project",
     outcome:
-      "Explained a real-world cyber incident in plain English, including what happened, why it mattered, and how similar risks can be reduced.",
-    skills: ["Research", "Risk explanation", "Professional writing"],
+      "Built a UI-triggered scanning workflow using Nmap, generated structured diagnostics with network metadata, applied public-key encryption, and added Red / Yellow / Green host prioritisation.",
+    skills: ["Nmap", "encryption", "risk scoring", "secure reporting"],
   },
   {
-    title: "Practical hardening checklist",
+    title: "Clarity Operational Tracking Application",
+    context: "Capita / Civil Service Pensions",
     outcome:
-      "Created a clear checklist for safer accounts, devices, and everyday working habits that non-technical teams can follow.",
-    skills: ["Security awareness", "Process design", "Communication"],
+      "Designed an Access-based application that brings multiple data sources into one operational view, helping analysts track outstanding, due, and pended work during migration and BAU activity.",
+    skills: ["Access", "SQL", "workflow visibility", "service control"],
   },
   {
-    title: "Portfolio evidence hub",
+    title: "M1 Interface Validation Scripts",
+    context: "MyCSP improvement work",
     outcome:
-      "Built this site to present background, strengths, and evidence in a professional format aimed at cybersecurity employers.",
-    skills: ["React", "TypeScript", "Frontend polish"],
+      "Created SQL checks that surfaced missed M1 errors and duplicate employee record issues earlier, reducing manual investigation time and standardising validation.",
+    skills: ["SQL", "root cause analysis", "data integrity", "automation"],
+  },
+  {
+    title: "Barclays Tech Innovation Challenge",
+    context: "Finalist and team lead",
+    outcome:
+      "Led a small team using Scrum-style planning, shaped a viable concept, presented to non-technical stakeholders, and considered privacy and security implications.",
+    skills: ["team leadership", "Scrum", "presentation", "privacy thinking"],
   },
 ];
 
-export const qualities = [
-  "Reliable in day-to-day work",
-  "Calm when solving problems",
-  "Curious about how systems fail",
-  "Comfortable explaining risk simply",
-  "Motivated by practical security outcomes",
-  "Ready to keep learning from experienced teams",
+export const certifications = [
+  {
+    title: "Microsoft Certified: Azure AI Fundamentals",
+    detail: "AI-900",
+    icon: BookOpenCheck,
+  },
+  {
+    title: "CompTIA Security+",
+    detail: "SY0-701 currently studying",
+    icon: ClipboardCheck,
+  },
+  {
+    title: "SOC triage practice",
+    detail: "Splunk, Suricata, CTFs, web and network security labs",
+    icon: LockKeyhole,
+  },
 ];
 
-export const nextSteps = [
+export const workingStyle: EvidenceItem[] = [
   {
-    title: "Internship",
-    detail: "A place to apply university learning in real security, IT, risk, or compliance work.",
-    icon: UserRoundCheck,
+    title: "Calm under pressure",
+    detail:
+      "Used to operational deadlines, escalations, and turning ambiguous issues into next steps.",
+    icon: BriefcaseBusiness,
   },
   {
-    title: "Graduate role",
-    detail: "An early-career role with mentoring, responsibility, and room to build evidence quickly.",
-    icon: GraduationCap,
+    title: "Plain-English reporting",
+    detail:
+      "Comfortable converting technical findings into business impact, remediation steps, and audit-friendly notes.",
+    icon: FileText,
   },
   {
-    title: "Entry-level security support",
-    detail: "A team where careful documentation, investigation, and clear communication matter.",
+    title: "Curious about failure paths",
+    detail:
+      "Enjoys understanding how systems break, how controls fail, and how teams can catch issues earlier.",
+    icon: Network,
+  },
+  {
+    title: "Hands-on learner",
+    detail:
+      "Actively building practical security evidence through labs, tooling, CTFs, and project work.",
+    icon: Code2,
+  },
+];
+
+export const roleTargets: EvidenceItem[] = [
+  {
+    title: "SOC Analyst",
+    detail:
+      "Alert triage, investigation notes, escalation packs, and detection improvement.",
     icon: ShieldCheck,
   },
+  {
+    title: "Cyber Security Analyst",
+    detail:
+      "Risk review, vulnerability investigation, secure reporting, and stakeholder support.",
+    icon: SearchCheck,
+  },
+  {
+    title: "Security Operations Support",
+    detail:
+      "Reliable operational control, documentation, queue handling, and evidence-based improvement.",
+    icon: Trophy,
+  },
 ];
+
+export const heroProof = [
+  "SQL-led investigation",
+  "secure data interfaces",
+  "Splunk and Suricata labs",
+  "root cause analysis",
+  "stakeholder escalation",
+];
+
+export const contactNote =
+  "For recruiters and hiring managers: I am based in Liverpool and open to SOC, cyber security analyst, and security operations conversations.";

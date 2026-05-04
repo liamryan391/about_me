@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   BriefcaseBusiness,
+  GraduationCap,
   MapPin,
   Menu,
   ShieldCheck,
@@ -8,32 +9,61 @@ import {
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import {
+  certifications,
+  contactNote,
+  education,
   employerSignals,
-  nextSteps,
+  experience,
+  heroProof,
+  metrics,
   profile,
   projects,
-  qualities,
-  strengths,
-  timeline,
+  roleTargets,
+  skillGroups,
+  workingStyle,
 } from "./profile";
 
 const navItems = [
-  { label: "Profile", href: "#profile" },
-  { label: "Experience", href: "#experience" },
-  { label: "Evidence", href: "#evidence" },
+  { label: "Snapshot", href: "#snapshot" },
+  { label: "Impact", href: "#impact" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
+
+type SectionHeadingProps = {
+  eyebrow: string;
+  title: string;
+  copy?: string;
+};
+
+function SectionHeading({ eyebrow, title, copy }: SectionHeadingProps) {
+  return (
+    <div className="section-heading">
+      <p className="eyebrow">{eyebrow}</p>
+      <div>
+        <h2>{title}</h2>
+        {copy ? <p>{copy}</p> : null}
+      </div>
+    </div>
+  );
+}
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const currentYear = useMemo(() => new Date().getFullYear(), []);
+  const emailLink = profile.links.find((link) => link.href.startsWith("mailto:"));
 
   return (
     <div className="site-shell">
       <header className="site-header" aria-label="Main navigation">
         <a className="brand" href="#top" aria-label="Liam Ryan home">
           <span className="brand-mark">LR</span>
-          <span>Liam Ryan</span>
+          <span>
+            Liam Ryan
+            <small>SOC Analyst candidate</small>
+          </span>
         </a>
 
         <button
@@ -58,116 +88,74 @@ function App() {
       <main id="top">
         <section className="hero-section" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="eyebrow">Cybersecurity portfolio</p>
+            <p className="eyebrow">{profile.role}</p>
             <h1 id="hero-title">{profile.name}</h1>
             <p className="hero-lede">{profile.headline}</p>
             <p className="hero-text">{profile.intro}</p>
+
+            <div className="hero-meta" aria-label="Candidate details">
+              <span>
+                <MapPin aria-hidden="true" />
+                {profile.location}
+              </span>
+              <span>
+                <BriefcaseBusiness aria-hidden="true" />
+                {profile.availability}
+              </span>
+            </div>
+
             <div className="hero-actions" aria-label="Primary actions">
-              <a className="primary-action" href="#contact">
-                Contact Liam
+              <a className="primary-action" href={emailLink?.href ?? "#contact"}>
+                Start a conversation
                 <ArrowRight aria-hidden="true" />
               </a>
-              <a className="secondary-action" href="#evidence">
-                View evidence
+              <a className="secondary-action" href="#projects">
+                View project evidence
               </a>
             </div>
           </div>
 
-          <div className="hero-visual" aria-label="Cybersecurity portfolio visual">
+          <div className="hero-visual" aria-label="Cybersecurity portfolio evidence panel">
             <img src="/security-portfolio-visual.svg" alt="" />
-            <div className="visual-caption">
-              <ShieldCheck aria-hidden="true" />
-              <span>Security, clarity, and professional growth</span>
+            <div className="hero-panel">
+              <div>
+                <p className="eyebrow">Recruiter signal</p>
+                <h2>Security mindset with operational proof</h2>
+              </div>
+              <ul>
+                {heroProof.map((proof) => (
+                  <li key={proof}>
+                    <ShieldCheck aria-hidden="true" />
+                    {proof}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
 
-        <section className="signal-band" aria-label="Employer signals">
-          {employerSignals.map((item) => {
-            const Icon = item.icon;
-            return (
-              <article className="signal-card" key={item.title}>
-                <Icon aria-hidden="true" />
-                <div>
-                  <h2>{item.title}</h2>
-                  <p>{item.detail}</p>
-                </div>
-              </article>
-            );
-          })}
+        <section className="metric-band" aria-label="Portfolio highlights">
+          {metrics.map((item) => (
+            <article className="metric-card" key={item.label}>
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+              <p>{item.detail}</p>
+            </article>
+          ))}
         </section>
 
-        <section className="profile-section" id="profile" aria-labelledby="profile-heading">
-          <div className="section-heading">
-            <p className="eyebrow">Profile</p>
-            <h2 id="profile-heading">A clear fit for security-aware teams</h2>
-          </div>
-          <div className="profile-grid">
-            <div className="profile-statement">
-              <p>
-                Employers do not just need someone who knows tools. They need someone who
-                can notice risk, communicate it clearly, and build trust with the people
-                who need to act on it.
-              </p>
-              <p>
-                This portfolio presents Liam as an early-career cybersecurity candidate
-                with a practical mindset, a strong learning attitude, and a professional
-                approach to work.
-              </p>
-            </div>
-            <div className="quick-facts" aria-label="Quick facts">
-              <div>
-                <span>Location</span>
-                <strong>
-                  <MapPin aria-hidden="true" />
-                  {profile.location}
-                </strong>
-              </div>
-              <div>
-                <span>Focus</span>
-                <strong>
-                  <ShieldCheck aria-hidden="true" />
-                  Cybersecurity roles
-                </strong>
-              </div>
-              <div>
-                <span>Best fit</span>
-                <strong>
-                  <BriefcaseBusiness aria-hidden="true" />
-                  Internship, graduate, entry-level
-                </strong>
-              </div>
-            </div>
-          </div>
-        </section>
+        <section className="snapshot-section" id="snapshot" aria-labelledby="snapshot-heading">
+          <SectionHeading
+            eyebrow="Snapshot"
+            title="Why this background transfers well into security operations"
+            copy="The strongest portfolio signal is not only tool exposure. It is the habit of investigating carefully, documenting evidence, and helping people act on the right information."
+          />
 
-        <section className="experience-section" id="experience" aria-labelledby="experience-heading">
-          <div className="section-heading">
-            <p className="eyebrow">Experience</p>
-            <h2 id="experience-heading">Background employers can understand quickly</h2>
-          </div>
-          <div className="timeline">
-            {timeline.map((item) => (
-              <article className="timeline-item" key={`${item.period}-${item.title}`}>
-                <span>{item.period}</span>
-                <h3>{item.title}</h3>
-                <p className="place">{item.place}</p>
-                <p>{item.summary}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="strengths-section" aria-labelledby="strengths-heading">
-          <div className="section-heading">
-            <p className="eyebrow">Strengths</p>
-            <h2 id="strengths-heading">Security value without unnecessary jargon</h2>
-          </div>
-          <div className="strength-grid">
-            {strengths.map((item) => {
+          <div className="signal-grid">
+            {employerSignals.map((item) => {
               const Icon = item.icon;
               return (
-                <article className="strength-card" key={item.title}>
+                <article className="signal-card" key={item.title}>
                   <Icon aria-hidden="true" />
                   <h3>{item.title}</h3>
                   <p>{item.detail}</p>
@@ -177,17 +165,73 @@ function App() {
           </div>
         </section>
 
-        <section className="evidence-section" id="evidence" aria-labelledby="evidence-heading">
-          <div className="section-heading">
-            <p className="eyebrow">Evidence</p>
-            <h2 id="evidence-heading">Projects that prove direction and intent</h2>
+        <section className="impact-section" id="impact" aria-labelledby="impact-heading">
+          <SectionHeading
+            eyebrow="Impact"
+            title="Professional experience with measurable operational value"
+            copy="A hiring manager should be able to see the through-line: investigation, controls, stakeholder trust, and repeatable improvement."
+          />
+
+          <div className="experience-list">
+            {experience.map((item) => (
+              <article className="experience-card" key={`${item.period}-${item.place}`}>
+                <div className="experience-topline">
+                  <span>{item.period}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.place}</p>
+                </div>
+                <p className="experience-summary">{item.summary}</p>
+                <ul>
+                  {item.achievements.map((achievement) => (
+                    <li key={achievement}>{achievement}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </div>
+        </section>
+
+        <section className="skills-section" id="skills" aria-labelledby="skills-heading">
+          <SectionHeading
+            eyebrow="Technical skills"
+            title="A practical toolkit for triage, validation, and secure reporting"
+            copy="The site now makes the security direction explicit while still showing the data and communication strengths that make the tooling useful."
+          />
+
+          <div className="skill-grid">
+            {skillGroups.map((group) => {
+              const Icon = group.icon;
+              return (
+                <article className="skill-card" key={group.title}>
+                  <div className="card-icon">
+                    <Icon aria-hidden="true" />
+                  </div>
+                  <h3>{group.title}</h3>
+                  <div className="tag-list" aria-label={`${group.title} skills`}>
+                    {group.skills.map((skill) => (
+                      <span key={skill}>{skill}</span>
+                    ))}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="projects-section" id="projects" aria-labelledby="projects-heading">
+          <SectionHeading
+            eyebrow="Evidence"
+            title="Projects and improvements that make the CV believable"
+            copy="Each item is written as proof of behaviour: investigate, build, validate, explain, and improve."
+          />
+
           <div className="project-grid">
             {projects.map((project) => (
               <article className="project-card" key={project.title}>
+                <span>{project.context}</span>
                 <h3>{project.title}</h3>
                 <p>{project.outcome}</p>
-                <div className="skill-list" aria-label={`${project.title} skills`}>
+                <div className="tag-list" aria-label={`${project.title} skills`}>
                   {project.skills.map((skill) => (
                     <span key={skill}>{skill}</span>
                   ))}
@@ -197,28 +241,77 @@ function App() {
           </div>
         </section>
 
-        <section className="qualities-section" aria-labelledby="qualities-heading">
-          <div className="section-heading">
-            <p className="eyebrow">Working Style</p>
-            <h2 id="qualities-heading">The traits that make the technical skills useful</h2>
+        <section className="education-section" id="education" aria-labelledby="education-heading">
+          <SectionHeading
+            eyebrow="Education"
+            title="University foundation backed by continued security development"
+            copy="The degree work supports the career move, while certifications and labs show current momentum."
+          />
+
+          <div className="education-layout">
+            <div className="education-list">
+              {education.map((item) => (
+                <article className="education-card" key={item.award}>
+                  <GraduationCap aria-hidden="true" />
+                  <div>
+                    <span>{item.period}</span>
+                    <h3>{item.award}</h3>
+                    <strong>{item.result}</strong>
+                    <p>{item.focus}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="certification-list" aria-label="Certifications and development">
+              {certifications.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article className="certification-card" key={item.title}>
+                    <Icon aria-hidden="true" />
+                    <div>
+                      <h3>{item.title}</h3>
+                      <p>{item.detail}</p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
-          <ul className="quality-list">
-            {qualities.map((quality) => (
-              <li key={quality}>{quality}</li>
-            ))}
-          </ul>
         </section>
 
-        <section className="next-section" aria-labelledby="next-heading">
-          <div className="section-heading">
-            <p className="eyebrow">Opportunities</p>
-            <h2 id="next-heading">Roles Liam is ready to discuss</h2>
-          </div>
-          <div className="next-grid">
-            {nextSteps.map((item) => {
+        <section className="fit-section" aria-labelledby="fit-heading">
+          <SectionHeading
+            eyebrow="Role fit"
+            title="Where Liam can add value next"
+            copy="The page is now aimed at employers who want an early-career security analyst with investigation discipline and professional communication."
+          />
+
+          <div className="fit-grid">
+            {roleTargets.map((item) => {
               const Icon = item.icon;
               return (
-                <article className="next-card" key={item.title}>
+                <article className="fit-card" key={item.title}>
+                  <Icon aria-hidden="true" />
+                  <h3>{item.title}</h3>
+                  <p>{item.detail}</p>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="working-section" aria-labelledby="working-heading">
+          <SectionHeading
+            eyebrow="Working style"
+            title="The behaviours behind the technical work"
+          />
+
+          <div className="working-grid">
+            {workingStyle.map((item) => {
+              const Icon = item.icon;
+              return (
+                <article className="working-card" key={item.title}>
                   <Icon aria-hidden="true" />
                   <h3>{item.title}</h3>
                   <p>{item.detail}</p>
@@ -231,17 +324,21 @@ function App() {
         <section className="contact-section" id="contact" aria-labelledby="contact-heading">
           <div>
             <p className="eyebrow">Contact</p>
-            <h2 id="contact-heading">Open to cybersecurity conversations</h2>
-            <p>
-              Recruiters can review the connected profile now, with a CV, LinkedIn,
-              and preferred email ready to add before public launch.
-            </p>
+            <h2 id="contact-heading">Open to security conversations</h2>
+            <p>{contactNote}</p>
           </div>
           <div className="contact-actions">
             {profile.links.map((link) => {
               const Icon = link.icon;
+              const external = link.href.startsWith("http");
               return (
-                <a key={link.href} className="secondary-action" href={link.href} target="_blank" rel="noreferrer">
+                <a
+                  key={link.href}
+                  className="secondary-action"
+                  href={link.href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noreferrer" : undefined}
+                >
                   {link.label}
                   <Icon aria-hidden="true" />
                 </a>
@@ -254,7 +351,7 @@ function App() {
       <footer className="site-footer">
         <span>{profile.name}</span>
         <span>{currentYear}</span>
-        <span>{profile.audience}</span>
+        <span>{profile.target}</span>
       </footer>
     </div>
   );

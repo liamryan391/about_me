@@ -1,18 +1,18 @@
 # About Me
 
-A professional cybersecurity portfolio for Liam Ryan, designed for recruiters, hiring managers, and security teams who need a plain-English view of background, strengths, and employability.
+React + TypeScript cybersecurity portfolio for Liam Ryan. The site is designed for recruiters, hiring managers, and security teams who want a fast, employer-focused view of Liam's SOC analyst direction, Civil Service Pensions interface experience, MSc Cyber Security background, and project evidence.
 
 ## What is included
 
-- React and TypeScript frontend
-- Responsive portfolio layout
-- Cybersecurity-focused messaging for non-technical and mixed audiences
-- Editable profile content in `src/profile.ts`
-- Employer-focused sections for university background, work experience, strengths, evidence, and contact
+- Vite, React, and TypeScript application structure
+- Responsive portfolio layout with a polished security dashboard visual
+- CV-grounded copy covering Capita, MyCSP, LJMU, projects, technical skills, certifications, and role fit
+- Editable data model in `src/profile.ts`
+- Employer-facing sections for snapshot, impact, skills, projects, education, working style, and contact
 
 ## Run locally
 
-Install dependencies, then start the dev server:
+Install dependencies, then start the development server:
 
 ```bash
 npm install
@@ -25,6 +25,12 @@ Build for production:
 npm run build
 ```
 
+Preview the production build:
+
+```bash
+npm run preview
+```
+
 ## Personalise before publishing
 
-Update `src/profile.ts` with exact university, job experience, project, LinkedIn, email, and CV details. The current copy is intentionally careful because the source CV and ChatGPT Job project details were not available inside this workspace.
+Most content lives in `src/profile.ts`. Update that file if your CV changes, if you want to add a downloadable CV link, or if you decide to include/remove public contact details.
