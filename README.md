@@ -1,21 +1,43 @@
-# About Me
+# Liam Ryan About Me Website
 
-React + TypeScript cybersecurity portfolio for Liam Ryan. The site is designed for recruiters, hiring managers, and security teams who want a fast, employer-focused view of Liam's SOC analyst direction, Civil Service Pensions interface experience, MSc Cyber Security background, and project evidence.
+This repository contains the source code for my personal cybersecurity portfolio website.
 
-## What is included
+The website is aimed at recruiters, hiring managers, and security teams who want a quick, clear view of my SOC analyst direction, technical skills, university background, work experience, and project evidence.
 
-- Vite, React, and TypeScript application structure
-- Responsive portfolio layout with a polished security dashboard visual
-- CV-grounded copy covering Capita, MyCSP, LJMU, projects, technical skills, certifications, and role fit
-- Editable data model in `src/profile.ts`
-- Employer-facing sections for snapshot, impact, skills, projects, education, working style, and contact
+## Purpose
 
-## Run locally
+The page is not meant to be a copy of my CV. It is a front-end portfolio that turns the strongest parts of my CV into a more visual, interactive, and employer-friendly experience.
 
-Install dependencies, then start the development server:
+It highlights:
+
+- SOC analyst and cyber security analyst career focus
+- Civil Service Pensions interface investigation experience
+- SQL-led validation, reconciliation, and root cause analysis
+- MSc Cyber Security and BSc Computer Science background
+- Security labs and tools including Splunk, Suricata, Nmap, Burp Suite, Greenbone, Metasploit, and Hydra
+- Project evidence such as the secure network scanner, Clarity tracking application, validation scripts, and Barclays Tech Innovation Challenge
+
+## Tech Stack
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Lucide React icons
+
+React, TypeScript, and Tailwind CSS are implementation choices for the website itself. They are not presented as the main subject of the portfolio content.
+
+## Run Locally
+
+Install dependencies:
 
 ```bash
 npm install
+```
+
+Start the local development server:
+
+```bash
 npm run dev
 ```
 
@@ -31,6 +53,26 @@ Preview the production build:
 npm run preview
 ```
 
-## Personalise before publishing
+## Editing Content
 
-Most content lives in `src/profile.ts`. Update that file if your CV changes, if you want to add a downloadable CV link, or if you decide to include/remove public contact details.
+Most portfolio content lives in:
+
+```text
+src/profile.ts
+```
+
+The main page layout lives in:
+
+```text
+src/App.tsx
+```
+
+Global styling and the Tailwind import live in:
+
+```text
+src/styles.css
+```
+
+## Notes
+
+The site is designed as a living portfolio. Future improvements can include a downloadable CV, deeper SOC lab write-ups, project screenshots, GitHub links for technical evidence, and a dedicated case-study page for the MSc network scanner.
